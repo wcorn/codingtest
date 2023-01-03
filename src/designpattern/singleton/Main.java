@@ -1,5 +1,9 @@
 package designpattern.singleton;
-
+/*
+- 생성자의 호출이 반복적으로 이뤄져도 실제로 생성되는 객체는 최초 생성된 객체를 반환해주는 것
+- 오직 하나만 생성하고 그 인스턴스를 사용하도록 하는 것이 패턴의 목적
+- 자원 공유
+ */
 public class Main {
     public static void main(String[] args) {
         Aclazz aclazz = new Aclazz();
