@@ -42,15 +42,42 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException {
-        //정수 비교할지 객체 비교할지 선택
-        System.out.println("정수 1 객체 2");
+        System.out.println("정렬 1 탐색 2");
         int num = Integer.parseInt(br.readLine());
         if (num == 1) {
-            intSequence();
+            System.out.println("정수 1 객체 2");
+            int nums = Integer.parseInt(br.readLine());
+            if (nums == 1) {
+                intSequence();
+            }
+            if (nums == 2) {
+                objectSequence();
+            }
         }
         if (num == 2) {
-            objectSequence();
+            System.out.println("이분 탐색 1");
+            int nums = Integer.parseInt(br.readLine());
+            if (nums == 1) {
+                binarySearch();
+            }
         }
+    }
+
+    private static void binarySearch() throws IOException {
+        System.out.print("배열의 크기: ");
+        int N = Integer.parseInt(br.readLine());
+        Object[] arr = new Object[N];
+        System.out.println("정렬할 정수를 공백한개로 구분하여 입력");
+        st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < N; i++) {
+            arr[i] = Integer.parseInt(st.nextToken());
+        }
+        MergeSort.sort(arr);
+        System.out.println("정렬후: " + Arrays.toString(arr));
+        System.out.print("찾아야 할 수 입력: ");
+        int n = Integer.parseInt(br.readLine());
+        Object result = BinarySearch.search(arr,n);
+        System.out.println(result);
     }
 
     private static void intSequence() throws IOException {
