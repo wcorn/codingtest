@@ -55,12 +55,41 @@ public class Main {
             }
         }
         if (num == 2) {
-            System.out.println("이분 탐색 1");
+            System.out.println("이분 탐색 1, 이분 객체 탐색 2");
             int nums = Integer.parseInt(br.readLine());
             if (nums == 1) {
                 binarySearch();
             }
+            else if(nums ==2){
+                objectBinarySearch();
+            }
         }
+    }
+
+    private static void objectBinarySearch() throws IOException {
+        System.out.print("배열의 크기: ");
+        int N = Integer.parseInt(br.readLine());
+        int x;
+        int y;
+        object[] arr = new object[N];
+        object target;
+        for (int i = 0; i < N; i++) {
+            System.out.print("객체 [" + (i + 1) + "]: ");
+            st = new StringTokenizer(br.readLine());
+            x = Integer.parseInt(st.nextToken());
+            y = Integer.parseInt(st.nextToken());
+            arr[i] = new object(x, y);
+        }
+        System.out.println("정렬전 : " + Arrays.toString(arr));
+        MergeSort.sort(arr,new objectComparator());
+        System.out.println("정렬후: " + Arrays.toString(arr));
+        System.out.print("목표: ");
+        st = new StringTokenizer(br.readLine());
+        x = Integer.parseInt(st.nextToken());
+        y = Integer.parseInt(st.nextToken());
+        target = new object(x,y);
+        Object result = BinarySearch.search(arr,target,new objectComparator());
+        System.out.println("결과: "+result);
     }
 
     private static void binarySearch() throws IOException {
@@ -91,7 +120,6 @@ public class Main {
         }
         System.out.println("정렬전 : " + Arrays.toString(arr));
         MergeSort.sort(arr);
-
         System.out.println("정렬후: " + Arrays.toString(arr));
     }
 
