@@ -42,44 +42,23 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException {
-        System.out.println("정렬 1 탐색 2");
-        int num = Integer.parseInt(br.readLine());
-        if (num == 1) {
             System.out.println("정수 1 객체 2");
             int nums = Integer.parseInt(br.readLine());
+            Object[] arr;
+            object[] objectArr;
             if (nums == 1) {
-                intSequence();
+               arr = init();
             }
             if (nums == 2) {
-                objectSequence();
+                objectArr = initObject();
             }
         }
-        if (num == 2) {
-            System.out.println("이분 탐색 1, 이분 객체 탐색 2");
-            int nums = Integer.parseInt(br.readLine());
-            if (nums == 1) {
-                binarySearch();
-            }
-            else if(nums ==2){
-                objectBinarySearch();
-            }
-        }
-    }
 
-    private static void objectBinarySearch() throws IOException {
-        System.out.print("배열의 크기: ");
-        int N = Integer.parseInt(br.readLine());
+
+    private static void objectBinarySearch(object[] arr) throws IOException {
         int x;
         int y;
-        object[] arr = new object[N];
         object target;
-        for (int i = 0; i < N; i++) {
-            System.out.print("객체 [" + (i + 1) + "]: ");
-            st = new StringTokenizer(br.readLine());
-            x = Integer.parseInt(st.nextToken());
-            y = Integer.parseInt(st.nextToken());
-            arr[i] = new object(x, y);
-        }
         System.out.println("정렬전 : " + Arrays.toString(arr));
         MergeSort.sort(arr,new objectComparator());
         System.out.println("정렬후: " + Arrays.toString(arr));
@@ -92,15 +71,8 @@ public class Main {
         System.out.println("결과: "+result);
     }
 
-    private static void binarySearch() throws IOException {
-        System.out.print("배열의 크기: ");
-        int N = Integer.parseInt(br.readLine());
-        Object[] arr = new Object[N];
-        System.out.println("정렬할 정수를 공백한개로 구분하여 입력");
-        st = new StringTokenizer(br.readLine());
-        for (int i = 0; i < N; i++) {
-            arr[i] = Integer.parseInt(st.nextToken());
-        }
+    private static void binarySearch(Object[] arr) throws IOException {
+
         MergeSort.sort(arr);
         System.out.println("정렬후: " + Arrays.toString(arr));
         System.out.print("찾아야 할 수 입력: ");
@@ -109,7 +81,20 @@ public class Main {
         System.out.println(result);
     }
 
-    private static void intSequence() throws IOException {
+    private static void mergeSort(Object[] arr) throws IOException {
+
+        System.out.println("정렬전 : " + Arrays.toString(arr));
+        MergeSort.sort(arr);
+        System.out.println("정렬후: " + Arrays.toString(arr));
+    }
+
+    private static void objectMergeSort(object[] arr) throws IOException {
+
+        System.out.println("정렬전 : " + Arrays.toString(arr));
+        MergeSort.sort(arr,new objectComparator());
+        System.out.println("정렬후: " + Arrays.toString(arr));
+    }
+    private static Object[] init() throws IOException {
         System.out.print("배열의 크기: ");
         int N = Integer.parseInt(br.readLine());
         Object[] arr = new Object[N];
@@ -118,12 +103,9 @@ public class Main {
         for (int i = 0; i < N; i++) {
             arr[i] = Integer.parseInt(st.nextToken());
         }
-        System.out.println("정렬전 : " + Arrays.toString(arr));
-        MergeSort.sort(arr);
-        System.out.println("정렬후: " + Arrays.toString(arr));
+        return arr;
     }
-
-    private static void objectSequence() throws IOException {
+    private static object[] initObject() throws IOException {
         System.out.print("배열의 크기: ");
         int N = Integer.parseInt(br.readLine());
         int x;
@@ -136,9 +118,6 @@ public class Main {
             y = Integer.parseInt(st.nextToken());
             arr[i] = new object(x, y);
         }
-        System.out.println("정렬전 : " + Arrays.toString(arr));
-        MergeSort.sort(arr,new objectComparator());
-        System.out.println("정렬후: " + Arrays.toString(arr));
-
+        return arr;
     }
 }
