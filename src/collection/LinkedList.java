@@ -195,6 +195,8 @@ public class LinkedList<T> implements List<T>, Queue<T> {
         node.data = null;
         size--;
         if (first.next == null) {
+            first = null;
+            last = null;
             return t;
         }
         first = first.next;
