@@ -1,33 +1,55 @@
 package collection;
 
-public class LinkedList<T> implements List<T>, Queue<T> {
+public class LinkedList<T> implements List<T>, Queue<T>, Stack<T> {
     /**
-     * Queue의 사이즈
+     * List의 사이즈
      */
     int size = 0;
     /**
-     * Queue에 제일 앞에 있는 객체
+     * List에 제일 앞에 있는 객체
      */
     Node<T> first;
     /**
-     * Qeueue에 제일 뒤에 있는 객체
+     * List에 제일 뒤에 있는 객체
      */
     Node<T> last;
 
-    /**
-     * linked list 구성하는 node
-     * @param <T> node를 구성할 객체
-     */
-    private static class Node<T> {
-        T data;
-        Node<T> next;
-        Node<T> prev;
-
-        Node(Node<T> prev, T data, Node<T> next) {
-            this.data = data;
-            this.prev = prev;
-            this.next = next;
+    @Override
+    public boolean push(T t) {
+        Node<T> node = last;
+        Node<T> newNode = new Node<>(node, t, null);
+        last = newNode;
+        if (node == null) {
+            first = newNode;
+        } else {
+            node.next = newNode;
         }
+        size++;
+        return true;
+    }
+
+    @Override
+    public T pop() {
+        if (size <= 0)
+            throw new NullPointerException();
+        T t = last.data;
+        size--;
+        if (last.prev == null) {
+            first = null;
+            last = null;
+            return t;
+        }
+        Node<T> prev = last.prev;
+        last.data = null;
+        last.prev = null;
+        last.next = null;
+        last = prev;
+        return t;
+    }
+
+    @Override
+    public T peek() {
+        return last.data;
     }
 
     /**
