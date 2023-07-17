@@ -21,20 +21,4 @@ public interface List<T> extends Collection<T> {
      */
     @Override
     boolean contains(Object o);
-
-    /**
-     * list에 객체 추가
-     * @param t generic type으로 처음 선언한 collection에 맞는 객체
-     * @return 추가에 성공하면 true, 실패하면 false
-     */
-    @Override
-    boolean add(T t);
-
-    /**
-     * list에 객체 삭제
-     * @param o 객체
-     * @return 삭제에 성공하면 true, 실패하면 false
-     */
-    @Override
-    boolean remove(Object o);
 }

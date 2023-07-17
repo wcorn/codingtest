@@ -95,7 +95,7 @@ public class LinkedList<T> implements List<T>, Queue<T> {
      * @return 추가하면 true, 실패하면 false
      */
     @Override
-    public boolean add(T t) {
+    public boolean enqueue(T t) {
         Node<T> node = last;
         Node<T> newNode = new Node<>(node, t, null);
         last = newNode;
@@ -186,7 +186,7 @@ public class LinkedList<T> implements List<T>, Queue<T> {
      * @throws NullPointerException queue가 비어있으면 예외처리
      */
     @Override
-    public T remove() throws NullPointerException {
+    public T dequeue() throws NullPointerException {
         if (size <= 0) {
             throw new NullPointerException();
         }
@@ -208,8 +208,13 @@ public class LinkedList<T> implements List<T>, Queue<T> {
      * @return 제일 앞에 있는 객체 리턴
      */
     @Override
-    public T elemement() {
+    public T front() {
         return first.data;
+    }
+
+    @Override
+    public T rear() {
+        return last.data;
     }
 
     /**
