@@ -37,7 +37,8 @@ public class LinkedList<T> implements List<T>, Queue<T> {
     }
 
     /**
-     * queue의 size 반환
+     * List의 size 반환
+     *
      * @return q's size
      */
     @Override
@@ -46,7 +47,8 @@ public class LinkedList<T> implements List<T>, Queue<T> {
     }
 
     /**
-     * queue가 비어 있는지 확인
+     * List가 비어 있는지 확인
+     *
      * @return 비어 있으면 true, 그렇지 않으면 false
      */
     @Override
@@ -55,9 +57,10 @@ public class LinkedList<T> implements List<T>, Queue<T> {
     }
 
     /**
-     * 객체가 queue에 있는 지확인
+     * 객체가 List에 있는 지확인
+     *
      * @param o 객체
-     * @return queue에 parameter로 넘어온 객체가 존재하면 true, 그렇지 않으면 false
+     * @return List에 parameter로 넘어온 객체가 존재하면 true, 그렇지 않으면 false
      */
     @Override
     public boolean contains(Object o) {
@@ -65,7 +68,8 @@ public class LinkedList<T> implements List<T>, Queue<T> {
     }
 
     /**
-     * parameter로 넘어온 객체가 queue index 값
+     * parameter로 넘어온 객체가 List index 값
+     *
      * @param o 객체
      * @return 객체의 index, 존재 하지 않으면 -1 return
      */
@@ -91,6 +95,7 @@ public class LinkedList<T> implements List<T>, Queue<T> {
 
     /**
      * queue에 객체 추가
+     *
      * @param t generic type으로 처음 선언한 collection에 맞는 객체
      * @return 추가하면 true, 실패하면 false
      */
@@ -109,7 +114,8 @@ public class LinkedList<T> implements List<T>, Queue<T> {
     }
 
     /**
-     * queue에 parameter로 넘어온 객체 삭제
+     * List에 parameter로 넘어온 객체 삭제
+     *
      * @param o 객체
      * @return 객체 삭제했으면 true, 그렇지 않으면 false
      */
@@ -134,7 +140,8 @@ public class LinkedList<T> implements List<T>, Queue<T> {
     }
 
     /**
-     * 객체 node와 queue의 연결을 끊는 함수
+     * 객체 node와 List의 연결을 끊는 함수
+     *
      * @param x node
      * @return 끊은 객체 return
      */
@@ -161,7 +168,8 @@ public class LinkedList<T> implements List<T>, Queue<T> {
     }
 
     /**
-     * queue에 담긴 객체들 전부 삭제
+     * List에 담긴 객체들 전부 삭제
+     *
      * @return 초기화에 성공하면 true, 그렇지 않으면 false
      */
     @Override
@@ -182,6 +190,7 @@ public class LinkedList<T> implements List<T>, Queue<T> {
 
     /**
      * queue에 제일 앞에 있는 객체 삭제
+     *
      * @return 삭제한 객체 리턴
      * @throws NullPointerException queue가 비어있으면 예외처리
      */
@@ -190,21 +199,24 @@ public class LinkedList<T> implements List<T>, Queue<T> {
         if (size <= 0) {
             throw new NullPointerException();
         }
-        Node<T> node = first;
-        T t = node.data;
-        node.data = null;
+        T t = first.data;
         size--;
         if (first.next == null) {
             first = null;
             last = null;
             return t;
         }
-        first = first.next;
+        Node<T> next = first.next;
+        first.data = null;
+        first.prev = null;
+        first.next = null;
+        first = next;
         return t;
     }
 
     /**
      * 제일 앞에 있는 객체 리턴
+     *
      * @return 제일 앞에 있는 객체 리턴
      */
     @Override
@@ -218,8 +230,9 @@ public class LinkedList<T> implements List<T>, Queue<T> {
     }
 
     /**
-     * queue에 담긴 객체 문자열에 담아 배열의 형태로 리턴
-     * @return queue에 담긴 객체 문자열에 담아 배열의 형태로 리턴
+     * List에 담긴 객체 문자열에 담아 배열의 형태로 리턴
+     *
+     * @return List에 담긴 객체 문자열에 담아 배열의 형태로 리턴
      */
     @Override
     public String toString() {
@@ -232,5 +245,22 @@ public class LinkedList<T> implements List<T>, Queue<T> {
         str.append(x.data);
         str.append("]");
         return str.toString();
+    }
+
+    /**
+     * linked list 구성하는 node
+     *
+     * @param <T> node를 구성할 객체
+     */
+    private static class Node<T> {
+        T data;
+        Node<T> next;
+        Node<T> prev;
+
+        Node(Node<T> prev, T data, Node<T> next) {
+            this.data = data;
+            this.prev = prev;
+            this.next = next;
+        }
     }
 }
