@@ -48,9 +48,13 @@ public class Main {
             object[] objectArr;
             if (nums == 1) {
                arr = init();
+               InsertionSort.sort(arr);
+                System.out.println(Arrays.toString(arr));
             }
             if (nums == 2) {
                 objectArr = initObject();
+                InsertionSort.sort(objectArr,new objectComparator());
+                System.out.println(Arrays.toString(Arrays.stream(objectArr).toArray()));
             }
         }
 
