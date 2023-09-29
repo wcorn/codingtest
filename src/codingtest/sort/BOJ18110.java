@@ -1,3 +1,5 @@
+package codingtest.sort;
+
 import java.io.*;
 
 public class BOJ18110 {

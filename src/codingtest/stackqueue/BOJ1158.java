@@ -1,4 +1,4 @@
-package codingtest.queue;
+package codingtest.stackqueue;
 
 import java.io.BufferedReader;
 import java.io.IOException;
