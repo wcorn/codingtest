@@ -1,38 +1,36 @@
 package codingtest.search;
 
-import java.util.*;
 import java.io.*;
+import java.util.*;
 
-public class BOJ15654 {
+public class BOJ15663 {
     private static int N;
     private static int M;
     private static int[] nums;
+    private static StringBuilder sb;
     private static int[] sequence;
-    static boolean[] visited;
-    private static StringBuilder sb = new StringBuilder();
+    private static boolean[] visited;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
+        sb = new StringBuilder();
+        StringTokenizer st;
+        st = new StringTokenizer(br.readLine());
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
         nums = new int[N];
-        sequence = new int[M];
+        sequence = new int[N];
         visited = new boolean[N];
         st = new StringTokenizer(br.readLine());
         for (int i = 0; i < N; i++) {
             nums[i] = Integer.parseInt(st.nextToken());
         }
-        solve();
+        Arrays.sort(nums);
+        solve(0);
         System.out.println(sb);
     }
 
-    private static void solve() {
-        Arrays.sort(nums);
-        dfs(0);
-    }
-
-    private static void dfs(int depth) {
+    private static void solve(int depth) {
         if (depth == M) {
             for (int i = 0; i < M; i++) {
                 sb.append(sequence[i]).append(" ");
@@ -40,13 +38,17 @@ public class BOJ15654 {
             sb.append("\n");
             return;
         }
-        for (int i = 0; i <N; i++) {
-            if (!visited[i]) {
-                visited[i] = true;
-                sequence[depth] = nums[i];
-                dfs(depth + 1);
-                visited[i] = false;
-            }
+        int before = 0;
+        for (int i = 0; i < N; i++) {
+            if (visited[i])
+                continue;
+            if (before == nums[i])
+                continue;
+            visited[i] = true;
+            sequence[depth] = nums[i];
+            before = nums[i];
+            solve(depth + 1);
+            visited[i] = false;
         }
     }
 }

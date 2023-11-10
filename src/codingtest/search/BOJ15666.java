@@ -1,24 +1,26 @@
 package codingtest.search;
 
-import java.util.*;
 import java.io.*;
+import java.util.*;
 
-public class BOJ15654 {
+public class BOJ15666 {
     private static int N;
     private static int M;
     private static int[] nums;
+    private static StringBuilder sb;
     private static int[] sequence;
-    static boolean[] visited;
-    private static StringBuilder sb = new StringBuilder();
+    private static boolean[] isVisited;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
+        StringTokenizer st;
+        sb = new StringBuilder();
+        st = new StringTokenizer(br.readLine());
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
         nums = new int[N];
         sequence = new int[M];
-        visited = new boolean[N];
+        isVisited = new boolean[N];
         st = new StringTokenizer(br.readLine());
         for (int i = 0; i < N; i++) {
             nums[i] = Integer.parseInt(st.nextToken());
@@ -29,10 +31,10 @@ public class BOJ15654 {
 
     private static void solve() {
         Arrays.sort(nums);
-        dfs(0);
+        dfs(0, 0);
     }
 
-    private static void dfs(int depth) {
+    private static void dfs(int start, int depth) {
         if (depth == M) {
             for (int i = 0; i < M; i++) {
                 sb.append(sequence[i]).append(" ");
@@ -40,13 +42,14 @@ public class BOJ15654 {
             sb.append("\n");
             return;
         }
-        for (int i = 0; i <N; i++) {
-            if (!visited[i]) {
-                visited[i] = true;
-                sequence[depth] = nums[i];
-                dfs(depth + 1);
-                visited[i] = false;
-            }
+        int before = -1;
+        for (int i = start; i < N; i++) {
+            if (before == nums[i])
+                continue;
+            before = nums[i];
+            sequence[depth] = nums[i];
+            dfs(i, depth + 1);
+
         }
     }
 }
