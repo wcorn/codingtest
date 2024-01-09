@@ -1,4 +1,4 @@
-package codingtest.stackqueue;
+package codingtest.datastructure;
 
 import java.util.*;
 

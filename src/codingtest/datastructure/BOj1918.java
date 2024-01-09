@@ -1,8 +1,7 @@
-package codingtest.stackqueue;
+package codingtest.datastructure;
 
 import java.io.*;
 import java.util.*;
-import java.awt.Dimension;
 
 public class BOj1918 {
     private static char[] formula;
