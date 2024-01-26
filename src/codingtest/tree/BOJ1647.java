@@ -19,12 +19,12 @@ public class BOJ1647 {
         M = Integer.parseInt(st.nextToken());
         root = new int[N];
         ans = 0;
-        for (int i = 0; i < N; i++) {
+        for(int i=0;i<N;i++){
             root[i] = i;
         }
         for (int i = 0; i < M; i++) {
             st = new StringTokenizer(br.readLine());
-            edges.add(new Edge(Integer.parseInt(st.nextToken()) - 1, Integer.parseInt(st.nextToken()) - 1, Integer.parseInt(st.nextToken())));
+            edges.add(new Edge(Integer.parseInt(st.nextToken())-1, Integer.parseInt(st.nextToken())-1, Integer.parseInt(st.nextToken())));
         }
         solve();
         System.out.print(ans);
